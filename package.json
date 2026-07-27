@@ -1,0 +1,31 @@
+{
+  "name": "reviewbite",
+  "version": "0.1.0",
+  "description": "Install editable AI code review workflows in any GitHub repository.",
+  "type": "module",
+  "bin": {
+    "reviewbite": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/cli.js && node --check src/init.js && node --check templates/scripts/ai-commit-review.mjs && node --check templates/scripts/ai-pr-review.mjs",
+    "prepack": "npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "code-review",
+    "github-actions",
+    "openai",
+    "cli"
+  ],
+  "license": "MIT"
+}
