@@ -27,5 +27,13 @@
     "openai",
     "cli"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meldyssey/reviewbite.git"
+  },
+  "homepage": "https://github.com/meldyssey/reviewbite#readme",
+  "bugs": {
+    "url": "https://github.com/meldyssey/reviewbite/issues"
+  },
   "license": "MIT"
 }
