@@ -89,7 +89,10 @@ async function main() {
   }
 
   const truncated = diff.length > MAX_CHARS;
-  if (truncated) diff = diff.slice(0, MAX_CHARS);
+  if (truncated) {
+    const lastNewline = diff.lastIndexOf("\n", MAX_CHARS);
+    diff = diff.slice(0, lastNewline > 0 ? lastNewline : MAX_CHARS);
+  }
 
   const { default: OpenAI } = await import("openai");
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

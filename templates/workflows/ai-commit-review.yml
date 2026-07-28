@@ -18,7 +18,8 @@ jobs:
 
       - name: Get commit diff
         run: |
-          git diff HEAD~1 HEAD > reviewbite_diff.txt || git show HEAD > reviewbite_diff.txt
+          git diff HEAD~1 HEAD > reviewbite_diff.txt \
+            || git show --format= HEAD > reviewbite_diff.txt
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
