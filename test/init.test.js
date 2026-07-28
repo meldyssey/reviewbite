@@ -97,6 +97,20 @@ test("workflow는 lifecycle script와 lockfile 변경 없이 SDK를 설치한다
   }
 });
 
+test("workflow는 Node 24 기반 action을 사용하고 자동 cache를 비활성화한다", () => {
+  for (const file of [
+    "templates/workflows/ai-commit-review.yml",
+    "templates/workflows/ai-pr-review.yml",
+  ]) {
+    const workflow = readFileSync(path.join(PROJECT_ROOT, file), "utf8");
+    assert.match(workflow, /actions\/checkout@v6/);
+    assert.match(workflow, /actions\/setup-node@v6/);
+    assert.match(workflow, /node-version: "24"/);
+    assert.match(workflow, /package-manager-cache: false/);
+    assert.doesNotMatch(workflow, /actions\/(?:checkout|setup-node)@v4/);
+  }
+});
+
 test("commit workflow의 fallback은 commit metadata를 제외한다", () => {
   const workflow = readFileSync(
     path.join(PROJECT_ROOT, "templates/workflows/ai-commit-review.yml"),
