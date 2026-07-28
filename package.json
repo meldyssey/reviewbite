@@ -1,6 +1,6 @@
 {
   "name": "reviewbite",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "Install editable AI code review workflows in any GitHub repository.",
   "type": "module",
   "bin": {
