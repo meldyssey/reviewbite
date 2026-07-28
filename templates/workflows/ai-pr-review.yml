@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout trusted base branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           persist-credentials: false
@@ -35,9 +35,10 @@ jobs:
             --output reviewbite_diff.txt
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
+          package-manager-cache: false
 
       - name: Install OpenAI SDK
         run: npm install --no-save --package-lock=false --ignore-scripts openai@6.0.0

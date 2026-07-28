@@ -12,7 +12,7 @@ jobs:
   ai-review:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -22,9 +22,10 @@ jobs:
             || git show --format= HEAD > reviewbite_diff.txt
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
+          package-manager-cache: false
 
       - name: Install OpenAI SDK
         run: npm install --no-save --package-lock=false --ignore-scripts openai@6.0.0
