@@ -26,7 +26,7 @@ jobs:
           node-version: "20"
 
       - name: Install OpenAI SDK
-        run: npm install --no-save openai@6.0.0
+        run: npm install --no-save --package-lock=false --ignore-scripts openai@6.0.0
 
       - name: Run AI review
         env:
