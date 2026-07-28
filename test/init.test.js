@@ -118,6 +118,22 @@ test("리뷰 prompt는 diff 안의 지시를 따르지 않는다", () => {
   }
 });
 
+test("리뷰 prompt는 전체 응답과 심각도 라벨을 한국어로 요청한다", () => {
+  for (const file of [
+    "templates/scripts/ai-commit-review.mjs",
+    "templates/scripts/ai-pr-review.mjs",
+  ]) {
+    const script = readFileSync(path.join(PROJECT_ROOT, file), "utf8");
+    assert.match(script, /Write the entire review in \$\{REVIEW_LANGUAGE\}/);
+    assert.match(script, /All headings, severity labels.+written in Korean/);
+    assert.match(script, /🔴 \*\*치명적 문제\*\* — 반드시 수정/);
+    assert.match(script, /🟡 \*\*경고\*\* — 수정 권장/);
+    assert.match(script, /🟢 \*\*제안\*\* — 개선 아이디어/);
+    assert.match(script, /✅ \*\*잘된 점\*\* — 긍정적 평가/);
+    assert.doesNotMatch(script, /\*\*Warning\*\*|\*\*Suggestion\*\*/);
+  }
+});
+
 test("리뷰 script는 큰 diff를 줄 경계에서 자른다", () => {
   for (const file of [
     "templates/scripts/ai-commit-review.mjs",
